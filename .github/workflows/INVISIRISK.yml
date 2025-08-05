@@ -22,10 +22,7 @@ jobs:
           go-version: '1.21'  # or any version like '1.22', 'stable'
 
       - name: Install dependencies
-        run: go get .
-
-      - name: Build
-        run: go build -v ./...
+        run: go mod tidy
         
       - name: Cleanup PSE
         if: always()
