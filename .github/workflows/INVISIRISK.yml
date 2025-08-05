@@ -1,0 +1,48 @@
+name: GO build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Run build
+    steps:
+      - name: Setup PSE
+        uses: invisirisk/pse-action@latest
+        with:
+          api_url: "https://app.dev.invisirisk.com"
+          app_token: ${{ secrets.IR_API_KEY_L_DEV }}
+
+      - uses: actions/checkout@v4
+      
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'  # or any version like '1.22', 'stable'
+
+      - name: Install dependencies
+        run: go get .
+
+      - name: Build
+        run: go build -v ./...
+        
+      - name: Cleanup PSE
+        if: always()
+        uses: invisirisk/pse-action@latest
+        with:
+          cleanup: "true"
+          
+  gather_analytics:
+     runs-on: ubuntu-latest
+     name: Gather Analytics
+     needs: test
+     if: always()
+     steps:
+     - name: Gather Status
+       uses: invisirisk/pse-action@latest
+       with:
+        api_url: "https://app.dev.invisirisk.com"
+        app_token: ${{ secrets.IR_API_KEY_L_DEV }}
+        send_job_status: "true"
+        debug: "true"
