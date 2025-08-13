@@ -11,8 +11,8 @@ jobs:
       - name: Setup PSE
         uses: invisirisk/pse-action@latest
         with:
-          api_url: "https://app.dev.invisirisk.com"
-          app_token: ${{ secrets.IR_API_KEY_L_DEV }}
+          api_url: "https://app.invisirisk.com"
+          app_token: ${{ secrets.IR_API_KEY_L_PROD }}
 
       - uses: actions/checkout@v4
       
@@ -39,7 +39,7 @@ jobs:
      - name: Gather Status
        uses: invisirisk/pse-action@latest
        with:
-        api_url: "https://app.dev.invisirisk.com"
-        app_token: ${{ secrets.IR_API_KEY_L_DEV }}
+        api_url: "https://app.invisirisk.com"
+        app_token: ${{ secrets.IR_API_KEY_L_PROD }}
         send_job_status: "true"
         debug: "true"
