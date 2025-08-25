@@ -15,7 +15,16 @@ jobs:
           api_url: "https://app.dev.invisirisk.com"
           app_token: ${{ secrets.IR_API_KEY_L_DEV }}
 
-
+      - name: Cache Go modules, tools, and build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod        # downloaded Go modules
+            ~/go/bin            # installed Go tool binaries
+            ~/.cache/go-build   # compiled package build cache
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
       
       - name: Install dependencies
         #run: go mod tidy
