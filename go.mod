@@ -48,6 +48,7 @@ require (
 	google.golang.org/api v0.244.0
 	modernc.org/sqlite v1.38.2
 	github.com/agnivade/levenshtein v0.0.0-20140731101439-5e9255723fbf // license check for uplytics
+    github.com/agnivade/levenshtein v1.1.1 // license check for uplytics
 )
 
 require (
