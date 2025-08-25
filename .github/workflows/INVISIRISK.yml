@@ -14,27 +14,12 @@ jobs:
         with:
           api_url: "https://app.dev.invisirisk.com"
           app_token: ${{ secrets.IR_API_KEY_L_DEV }}
-
-      - name: Ensure Go cache dirs exist
-        run: |
-          mkdir -p ~/go/pkg/mod
-          mkdir -p ~/go/bin
-          mkdir -p ~/.cache/go-build
-          
-      - name: Cache Go modules, tools, and build cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/go/pkg/mod        # downloaded Go modules
-            ~/go/bin            # installed Go tool binaries
-            ~/.cache/go-build   # compiled package build cache
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
       
       - name: Install dependencies
         #run: go mod tidy
-        run: go mod download
+     #   run: go mod download
+        
+      - run: go test -v ./...
         
       - name: Cleanup PSE
         if: always()
