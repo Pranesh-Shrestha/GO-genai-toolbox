@@ -8,13 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Run build
     steps:
+      - uses: actions/checkout@v4
       - name: Setup PSE
         uses: invisirisk/pse-action@latest
         with:
           api_url: "https://app.dev.invisirisk.com"
           app_token: ${{ secrets.IR_API_KEY_L_DEV }}
 
-      - uses: actions/checkout@v4
+
       
       - name: Set up Go
         uses: actions/setup-go@v4
