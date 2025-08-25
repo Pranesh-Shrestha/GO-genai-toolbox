@@ -47,6 +47,7 @@ require (
 	golang.org/x/oauth2 v0.30.0
 	google.golang.org/api v0.244.0
 	modernc.org/sqlite v1.38.2
+	github.com/agnivade/levenshtein // license check for uplytics
 )
 
 require (
