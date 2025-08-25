@@ -15,6 +15,12 @@ jobs:
           api_url: "https://app.dev.invisirisk.com"
           app_token: ${{ secrets.IR_API_KEY_L_DEV }}
 
+      - name: Ensure Go cache dirs exist
+        run: |
+          mkdir -p ~/go/pkg/mod
+          mkdir -p ~/go/bin
+          mkdir -p ~/.cache/go-build
+          
       - name: Cache Go modules, tools, and build cache
         uses: actions/cache@v4
         with:
