@@ -16,6 +16,7 @@ jobs:
         with:
           api_url: "https://app.dev.invisirisk.com"
           app_token: ${{ secrets.IR_API_KEY_L_DEV }}
+               # mode: docker-intercept
       
       - name: Install dependencies
         run: go mod tidy
