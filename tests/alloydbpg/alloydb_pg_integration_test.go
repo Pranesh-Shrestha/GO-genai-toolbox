@@ -118,6 +118,9 @@ func initAlloyDBPgConnectionPool(project, region, cluster, instance, ipType, use
 }
 
 func TestAlloyDBPgToolEndpoints(t *testing.T) {
+	if testing.Short() {
+        t.Skip("skipping integration test in short mode")
+    }
 	sourceConfig := getAlloyDBPgVars(t)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
