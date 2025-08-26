@@ -10,6 +10,10 @@ jobs:
     name: Run build
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: go mod tidy
+     #   run: go mod download
       
       - name: Setup PSE
         uses: invisirisk/pse-action@latest
@@ -18,9 +22,7 @@ jobs:
           app_token: ${{ secrets.IR_API_KEY_L_DEV }}
           mode: docker-intercept
       
-     # - name: Install dependencies
-     #   run: go mod tidy
-     #   run: go mod download
+
      
       - name: docker
         run: docker pull testcontainers/ryuk:0.12.0
