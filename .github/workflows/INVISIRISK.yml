@@ -22,7 +22,8 @@ jobs:
           app_token: ${{ secrets.IR_API_KEY_L_DEV }}
           mode: docker-intercept
       
-
+      - name: Build
+        run: go build -v ./...
      
       - name: docker
         run: docker pull testcontainers/ryuk:0.12.0
