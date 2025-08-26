@@ -74,6 +74,9 @@ func getAlloyDBAINLVars(t *testing.T) map[string]any {
 }
 
 func TestAlloyDBAINLToolEndpoints(t *testing.T) {
+	if testing.Short() {
+        t.Skip("skipping integration test in short mode")
+    }
 	sourceConfig := getAlloyDBAINLVars(t)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
