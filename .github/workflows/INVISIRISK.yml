@@ -18,8 +18,8 @@ jobs:
           app_token: ${{ secrets.IR_API_KEY_L_DEV }}
           mode: docker-intercept
       
-      - name: Install dependencies
-        run: go mod tidy
+     # - name: Install dependencies
+     #   run: go mod tidy
      #   run: go mod download
      
       - name: docker
